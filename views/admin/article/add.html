@@ -1,0 +1,217 @@
+﻿<!-- 公共模板- header -->
+{{include 'admin/public/header.html'}}
+
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<body>
+	<!-- 公共模板 -———— 顶部导航  -->
+	{{include 'admin/public/nav-top.html'}}
+
+	<div class="main-container" id="main-container">
+		<script type="text/javascript">
+			try { ace.settings.check('main-container', 'fixed') } catch (e) { }
+		</script>
+
+		<div class="main-container-inner">
+			<a class="menu-toggler" id="menu-toggler" href="#">
+				<span class="menu-text"></span>
+			</a>
+
+			<!-- 公共模板- 左侧导航 -->
+			{{include 'admin/public/nav-left.html'}}
+
+			<div class="main-content">
+				<div class="breadcrumbs" id="breadcrumbs">
+					<script type="text/javascript">
+						try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+					</script>
+
+					<ul class="breadcrumb">
+						<li>
+							<i class="icon-home home-icon"></i>
+							<a href="#">首页</a>
+						</li>
+						<li class="active">控制台</li>
+					</ul>
+					<!-- .breadcrumb -->
+
+					<div class="nav-search" id="nav-search">
+						<form class="form-search">
+							<span class="input-icon">
+								<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+								<i class="icon-search nav-search-icon"></i>
+							</span>
+						</form>
+					</div>
+					<!-- #nav-search -->
+				</div>
+
+				<div class="page-content">
+
+					<div class="page-header">
+						<h1>
+							新增内容
+						</h1>
+					</div>
+					<!-- /.page-header -->
+
+					<form class="form-horizontal" action="/admin/article/doAdd" method="POST" enctype="multipart/form-data">
+						<ul id="myTab" class="nav nav-tabs" style="height:34px;">
+							<li class="active">
+								<a href="#basic" data-toggle="tab">
+									基本设置
+								</a>
+							</li>
+							<li>
+								<a href="#content" data-toggle="tab">内容设置</a>
+							</li>
+							<li>
+								<a href="#seo" data-toggle="tab">SEO设置</a>
+							</li>
+
+						</ul>
+						<div id="myTabContent" class="tab-content" style="padding-top:40px;">
+							<div class="tab-pane fade in active" id="basic">
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1">所属分类:</label>
+
+									<div class="col-sm-10">
+										<select name="pid" id="pid">
+											<option value="0">--顶级分类--</option>
+											{{each cateList item key}}
+											<option value="{{@item._id}}">{{item.title}}</option>
+											{{each item.list subitem}}
+											<option value="{{@subitem._id}}">　　{{subitem.title}}</option>
+											{{/each}} {{/each}}
+										</select>
+									</div>
+									<input type="hidden" id="catename" name='catename' value={{cateList[0].title}}>
+
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1">文章标题:</label>
+
+									<div class="col-sm-10">
+										<input type="text" id="form-field-1" name='title' placeholder="" class="col-xs-10 col-sm-5">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1">封面图片:</label>
+
+									<div class="col-sm-10">
+										<input type="file" id="form-field-1" name='img_url' placeholder="" class="col-xs-10 col-sm-5">
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1">作者:</label>
+
+									<div class="col-sm-10">
+										<input type="text" id="form-field-1" name='author' placeholder="" class="col-xs-10 col-sm-5">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1">状态:</label>
+
+									<div class="col-sm-10">
+										<label for="status">已审核</label>
+										<input type="radio" id="status" name='status' checked value="1" placeholder="">&nbsp;&nbsp;&nbsp;
+										<label for="status1">未审核</label>
+										<input type="radio" id="status1" name='status' value="0" placeholder="">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right">加入推荐：</label>
+									<div class="col-sm-10">
+										<input type="checkbox" value="1" name="is_best" checked=""> 精品
+										<input type="checkbox" value="1" name="is_hot" checked=""> 热销
+										<input type="checkbox" value="1" name="is_new" checked=""> 新品
+									</div>
+								</div>
+
+
+							</div>
+							<div class="tab-pane fade" id="content">
+								<div class="form-group" style="height: auto;">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1">文章详情:</label>
+
+									<div class="col-sm-10">
+										<script id="editor" name="content" type="text/plain" style="width:800px;height:300px;"></script>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="seo">
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="keywords">关键字：</label>
+
+									<div class="col-sm-10">
+										<input type="text" id="keywords" name="keywords" class="col-xs-10 col-sm-5" />
+									</div>
+								</div>
+								<div class="form-group" style="height:100px;">
+									<label class="col-sm-2 control-label no-padding-right" for="description">描述：</label>
+									<div class="col-sm-10">
+										<textarea style="height:100px;" class="col-xs-10 col-sm-5" name="description" id="description" cols="10" rows="10"></textarea>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right"></label>
+							<div class="col-sm-10">
+								<button type="submit" class="btn btn-primary">提交</button>
+							</div>
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+		</div>
+		<!-- /.main-content -->
+
+	</div>
+	<!-- /.main-container-inner -->
+
+	<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+		<i class="icon-double-angle-up icon-only bigger-110"></i>
+	</a>
+	</div>
+	<!-- /.main-container -->
+
+
+	{{include 'admin/public/footer.html'}}
+
+	<script>
+		// 分类改变 把分类名称赋值给catename 隐藏域
+		var pidDom = document.getElementById('pid');
+		var catenameDom = document.getElementById('catename');
+		var options = pidDom.getElementsByTagName('option');
+
+		var options = pidDom.getElementsByTagName('option');
+		pidDom.onchange = function () {
+			for (var i = 0; i < options.length; i++) {
+				if (options[i].selected) {
+					catenameDom.value = options[i].innerHTML.trim();
+				}
+			}
+		}
+
+		//实例化编辑器
+		//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+		var ue = UE.getEditor('editor');
+	</script>
+</body>
+
+</html>
