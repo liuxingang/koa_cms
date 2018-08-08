@@ -2,7 +2,7 @@
  * @Author: liuxingang 
  * @Date: 2018-07-30 16:09:43 
  * @Last Modified by: liuxingang
- * @Last Modified time: 2018-08-06 17:00:05
+ * @Last Modified time: 2018-08-07 13:02:02
  */
 
 var config = require('../model/config')
@@ -53,6 +53,7 @@ router.use(async (ctx, next) => {
     // 比如要修改上传图片的类型、保存路径
     router.all('/editorUpload', ueditor([config.uploadUeditorPath, {
         "imageAllowFiles": [".png", ".jpg", ".jpeg"],
+        "imageMaxSize": 4096000, /* 4M 上传大小限制，单位B */
 	    "imagePathFormat": "/upload/ueditor/image/{yyyy}{mm}{dd}/{filename}"  // 保存为原文件名
     }]))
 

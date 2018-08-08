@@ -1,0 +1,35 @@
+<div id="header-wrapper">
+    	<div class="header-inner">
+        	<div class="logo">
+           		<h1>
+                	<a href="#" title="欢迎来到Koa Cms项目实战">
+                        <img src="/front/images/xihe/logo.jpeg" alt="希禾展览">
+                    </a>
+                </h1> 
+            </div>
+            <div class="nav">
+            	<ul class="clear">
+                	<li>
+                    	<a href="/" {{if pathname == '/'}}class="active"{{/if}}>网站首页</a>
+                    </li>
+                    <li>
+                    	<a href="/service" {{if pathname == '/service'}}class="active"{{/if}}>公司服务</a>
+                    </li>
+                
+                	
+                	<li>
+                    	<a href="/case" {{if pathname == '/case'}}class="active"{{/if}}>成功案例</a>
+                    </li>
+                	<li>
+                    	<a href="/news" {{if pathname == '/news'}}class="active"{{/if}}>新闻资讯</a>
+                    </li>
+                	<li>
+                    	<a href="/about" {{if pathname == '/about'}}class="active"{{/if}}>关于我们</a>
+                    </li>
+                	<li>
+                    	<a href="/connect" {{if pathname == '/connect'}}class="active"{{/if}}>联系我们</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+</div>

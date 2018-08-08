@@ -2,7 +2,7 @@
  * @Author: liuxingang 
  * @Date: 2018-07-30 16:28:37 
  * @Last Modified by: liuxingang
- * @Last Modified time: 2018-08-03 17:17:43
+ * @Last Modified time: 2018-08-07 09:35:08
  */
 var config = require('./model/config')
 var path = require('path');
@@ -42,12 +42,12 @@ app.use(static(path.join(config.uploadPath, '../')))
 app.use(bodyParser());
 
 // 配置路由
-var index = require('./routes/index')
+var front = require('./routes/front')
 var api = require('./routes/api')
 var admin = require('./routes/admin')
 router.use('/admin', admin);
 router.use('/api', api);
-router.use(index);
+router.use(front);
 
 
 

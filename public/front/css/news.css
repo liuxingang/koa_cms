@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* CSS Document */
+
+#main_wrapper{ background:#fff;}
+.main{ width:1140px; margin:0 auto; padding:60px 0 102px 0; }
+.news-item{
+	width: 100%;
+}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>内容详情</title>
+<title>heder_nav-menu</title>
+<link rel="stylesheet" type="text/css" href="/front/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/front/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/front/css/heder_nav-menu.css"/>
+<link rel="stylesheet" type="text/css" href="/front/css/successful_case.css"/>
+</head>
+
+<body>
+		{{include 'front/public/header.html'}}
+<div id="header_nav-wrapper">
+    <div class="header_nav">
+    	<h2>{{data.title}} &#160; <span>{{data.description}}</span></h2>
+    
+    
+    </div>
+
+
+
+</div>
+
+<div id="header_title-wrapper">
+
+    <div class="header_title clear">
+        <p >
+        <a href="#">服务行业</a>
+        <a href="#">教育行业</a>
+        <a href="#">房地产业</a>
+        <a href="#" style="margin-right:20px;">能源行业</a>
+        
+        </p>
+    </div>
+
+
+</div>
+
+
+<div id="main_wrapper">
+
+    
+    <div class="main">
+		<div class="content">
+			{{@data.content}}
+		</div>
+	    
+    	
+    </div>
+
+
+
+
+</div>
+
+
+
+{{include 'front/public/footer.html'}}
+        
+
+
+
+
+</body>
+</html>

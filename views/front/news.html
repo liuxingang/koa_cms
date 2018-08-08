@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>成功案例</title>
+	<title>heder_nav-menu</title>
+	<link rel="stylesheet" type="text/css" href="/front/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/front/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="/front/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="/front/css/heder_nav-menu.css" />
+	<link rel="stylesheet" type="text/css" href="/front/css/news.css" />
+</head>
+
+<body>
+	{{include 'front/public/header.html'}}
+	<div id="header_nav-wrapper">
+		<div class="header_nav">
+			<h2>新闻资讯 &#160;
+				<span>用心给客户书写出一次次满意的答卷，创造有价值的产品 APP开发
+				</span>
+			</h2>
+
+
+		</div>
+
+
+
+	</div>
+
+	<div id="header_title-wrapper">
+
+		<div class="header_title clear">
+			<p>
+				{{each cateList item}}
+				<a href="/news?pid={{@item._id}}" {{if pid == item._id}} class="active" {{/if}}>{{item.title}}</a>
+				{{/each}}
+
+			</p>
+		</div>
+
+
+	</div>
+
+
+	<div id="main_wrapper">
+
+
+		<div class="main">
+			<ul  class="clear news-list">
+				{{each articleList item}}
+				<li class="news-item">
+					<a href="/content/{{@item._id}}">
+						<span>{{item.title}}</span>
+						<span class="date">{{item.add_time}}</span>
+					</a>
+
+				</li>
+				{{/each}}
+				
+
+
+			</ul>
+			<div class="page-wrap">
+				<div id="page" class="pagination"></div>
+			</div>
+		</div>
+
+	
+
+
+
+
+	</div>
+
+
+
+	{{include 'front/public/footer.html'}}
+
+	<script src="/front/js/jquery-2.0.3.min.js"></script>
+	<script src="/front/js/jqPaginator.js"></script>
+
+	<script>
+		$('#page').jqPaginator({
+				totalPages: {{totalPages}},
+				visiblePages: 10,
+				currentPage: {{page}},
+				onPageChange: function (num, type) {
+					console.log(num,type)
+					if(type == 'change'){
+						{{if pid}}
+							location.href = '/news?pid={{pid}}&page=' + num 
+						{{else}}
+							location.href = '/news?page=' + num 
+						{{/if}}
+						
+					}
+				}
+			});
+	</script>
+
+
+
+
+
+</body>
+
+</html>

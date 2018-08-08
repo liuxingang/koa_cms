@@ -2,7 +2,7 @@
  * @Author: liuxingang 
  * @Date: 2018-07-30 16:24:37 
  * @Last Modified by: liuxingang
- * @Last Modified time: 2018-08-06 16:47:48
+ * @Last Modified time: 2018-08-07 11:38:33
  */
 var config = require('../../model/config')
 var router = require('koa-router')();
@@ -84,6 +84,7 @@ router.get('/edit', async (ctx) => {
     cateList = tools.cateToList(cateList)
 
     let result = await DB.find('article', { "_id": DB.getObjectId(id) });
+    console.log(result)
     await ctx.render('admin/article/edit', {
         data: result[0],
         cateList
