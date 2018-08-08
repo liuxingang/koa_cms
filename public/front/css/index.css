@@ -1,6 +1,5 @@
 @charset "utf-8";
 /* CSS Document */
-#banner-wrapper{}
 .swiper-wrapper .img-wrap{
 	height: 522px;
 	background-size: auto 522px;
@@ -58,9 +57,6 @@
 	background:#000000!important;
 }
 
-.tab-container{
-
-}
 .tab-container .tab-nav{
 	width: 800px;
 	margin: 0 auto;
