@@ -19,4 +19,15 @@
      ctx.body = [1,2,3,4,45]
  })
 
+router.get('/getDateByPrintNum', async (ctx) => {
+
+    ctx.body = {
+        name: '测试111',
+        age: 7,
+        car: '豫A7D8JDJ',
+        mobile: '13333333333',
+        book: 'book,dada,book'
+    }
+})
+
  module.exports = router.routes();

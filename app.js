@@ -2,7 +2,7 @@
  * @Author: liuxingang 
  * @Date: 2018-07-30 16:28:37 
  * @Last Modified by: liuxingang
- * @Last Modified time: 2018-08-07 09:35:08
+ * @Last Modified time: 2018-10-31 08:54:37
  */
 var config = require('./model/config')
 var path = require('path');
@@ -25,19 +25,25 @@ render(app, {
 
 app.keys = ['some secret hurr'];
 const CONFIG = {
-    key: 'lkoa:xg', /** (string) cookie key (default is koa:sess) */
+    key: 'lkoa:xg',
+    /** (string) cookie key (default is koa:sess) */
     maxAge: 1000 * 60 * 30,
-    overwrite: true, /** (boolean) can overwrite or not (default true) */
-    httpOnly: true, /** (boolean) httpOnly or not (default true) */
-    signed: true, /** (boolean) signed or not (default true) */
-    rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
-    renew: true, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
+    overwrite: true,
+    /** (boolean) can overwrite or not (default true) */
+    httpOnly: true,
+    /** (boolean) httpOnly or not (default true) */
+    signed: true,
+    /** (boolean) signed or not (default true) */
+    rolling: false,
+    /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
+    renew: true,
+    /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
 };
 app.use(session(CONFIG, app));
 
 // 配置静态资源中间件
 app.use(static(__dirname + '/public'))
-// 为上传图片设置虚拟路径
+    // 为上传图片设置虚拟路径
 app.use(static(path.join(config.uploadPath, '../')))
 app.use(bodyParser());
 
@@ -54,5 +60,5 @@ router.use(front);
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-app.listen(3000)
-console.log('server is running 3000')
+app.listen(4500)
+console.log('server is running 4500')
